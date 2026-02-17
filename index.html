@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.S.E.E. Ultimate Command Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Tactical Header -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-shield-halved"></i> I.S.E.E. PREDICT
+            </div>
+            <div class="status-badge" id="connection-status">
+                <span class="dot green"></span> SYSTEM LIVE
+            </div>
+        </header>
+
+        <!-- Command Hero -->
+        <main>
+            <div class="hero" id="hero-section">
+                <div class="hero-content">
+                    <h1 id="main-status">SCANNING REGIONS...</h1>
+                    <p id="last-updated">AWAITING TELEMETRY</p>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+
+                <!-- Warnings Panel (HUD Left) -->
+                <div class="card warning-card">
+                    <h2><i class="fas fa-satellite-dish"></i> ACTIVE RISK ANALYTICS</h2>
+                    <div id="warnings-list" class="list-container">
+                        <div class="empty-state">No anomalies detected in the current sector.</div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Stats & Usage) -->
+                <div class="card stats-card">
+                    <h2><i class="fas fa-microchip"></i> SYSTEM TELEMETRY</h2>
+                    <div class="stat-item">
+                        <span>TIMESTAMP</span>
+                        <span id="scan-time">--:--:--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>GEO LOCATIONS</span>
+                        <span id="locations-count">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>DATA SOURCE</span>
+                        <span id="data-source">--</span>
+                    </div>
+
+                    <div class="card-nested usage-section" style="margin-top: 3rem;">
+                        <h2><i class="fas fa-network-wired"></i> DATA LINK STATUS</h2>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="api-progress"></div>
+                        </div>
+                        <div class="usage-details">
+                            <span id="api-calls">SYNCING...</span>
+                            <span id="api-percent">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <button id="refresh-btn" onclick="fetchData()">
+                INITIALIZE RE-SCAN
+            </button>
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
