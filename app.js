@@ -1,7 +1,7 @@
 // I.S.E.E. Dashboard Controller
 
 // Cloud Function URL (Dynamically retrieved)
-const API_URL = process.env.API_URL;
+const API_URL = "https://us-central1-isee-484215.cloudfunctions.net/flood-live";
 
 // DOM Elements
 const els = {
