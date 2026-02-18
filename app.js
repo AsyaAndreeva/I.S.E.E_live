@@ -1,7 +1,8 @@
 // I.S.E.E. Dashboard Controller
 
-// Cloud Function URL (Dynamically retrieved)
-const API_URL = "https://us-central1-isee-484215.cloudfunctions.net/flood-live";
+// System Config (Obscured)
+const _0x4f2 = "aHR0cHM6Ly91cy1jZW50cmFsMS1pc2VlLTQ4NDIxNS5jbG91ZGZ1bmN0aW9ucy5uZXQvZmxvb2QtbGl2ZQ==";
+const API_URL = atob(_0x4f2);
 
 // DOM Elements
 const els = {
@@ -26,8 +27,8 @@ let isLoading = false;
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
-    // Auto-refresh every 5 minutes
-    setInterval(fetchData, 300000);
+    // Auto-refresh every 6 hours
+    setInterval(fetchData, 21600000); // 6 hours
 });
 
 async function fetchData() {
