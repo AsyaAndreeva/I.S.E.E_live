@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.S.E.E. — Prediction History</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Tactical Header -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-shield-halved"></i> I.S.E.E. PREDICT
+            </div>
+            <nav class="nav-tabs">
+                <a href="index.html" class="nav-tab"><i class="fas fa-satellite-dish"></i> LIVE SCAN</a>
+                <a href="history.html" class="nav-tab active"><i class="fas fa-clock-rotate-left"></i> HISTORY</a>
+            </nav>
+            <div class="status-badge" id="connection-status">
+                <span class="dot green"></span> ARCHIVE MODE
+            </div>
+        </header>
+
+        <main>
+            <!-- Page Title -->
+            <div class="hero history-hero">
+                <div class="hero-content">
+                    <h1>PREDICTION ARCHIVE</h1>
+                    <p id="history-subtitle">SELECT A DATE TO REVIEW HISTORICAL FLOOD PREDICTIONS</p>
+                </div>
+            </div>
+
+            <!-- Date Selector + Summary -->
+            <div class="history-controls card">
+                <h2><i class="fas fa-calendar-days"></i> SELECT SCAN DATE</h2>
+                <div class="date-selector-row">
+                    <div id="dates-list" class="dates-list">
+                        <div class="empty-state">Loading available dates...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Predictions Table -->
+            <div class="card history-data-card" id="predictions-panel" style="display:none;">
+                <div class="history-panel-header">
+                    <h2><i class="fas fa-table-list"></i> PREDICTIONS FOR <span id="selected-date-label">--</span></h2>
+                    <div class="history-meta">
+                        <span id="scan-meta"></span>
+                    </div>
+                </div>
+
+                <!-- Filter bar -->
+                <div class="filter-bar">
+                    <input type="text" id="location-search" placeholder="Search location..." class="search-input">
+                    <select id="risk-filter" class="filter-select">
+                        <option value="all">All Risk Levels</option>
+                        <option value="high">High Risk (≥35%)</option>
+                        <option value="moderate">Moderate (15-35%)</option>
+                        <option value="low">Low (5-15%)</option>
+                        <option value="safe">Safe (&lt;5%)</option>
+                    </select>
+                    <select id="feedback-filter" class="filter-select">
+                        <option value="all">All Feedback</option>
+                        <option value="flooded">Confirmed Flood</option>
+                        <option value="not_flooded">No Flood</option>
+                        <option value="no_feedback">No Feedback Yet</option>
+                    </select>
+                </div>
+
+                <!-- Table -->
+                <div id="predictions-table-container">
+                    <div class="empty-state">Select a date above to load predictions.</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="footer-note">Feedback helps improve model accuracy over time. Your responses are stored securely.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedback-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h3 class="modal-title"><i class="fas fa-comment-dots"></i> PROVIDE FLOOD FEEDBACK</h3>
+            <p class="modal-subtitle">For <strong id="modal-location"></strong> on <strong id="modal-date"></strong></p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirmed" onclick="submitFeedback(true)">
+                    <i class="fas fa-water"></i> FLOOD OCCURRED
+                </button>
+                <button class="modal-btn not-flooded" onclick="submitFeedback(false)">
+                    <i class="fas fa-check-circle"></i> NO FLOOD
+                </button>
+                <button class="modal-btn cancel" onclick="closeFeedbackModal()">
+                    CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="history.js"></script>
+</body>
+
+</html>

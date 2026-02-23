@@ -27,8 +27,8 @@ let isLoading = false;
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
-    // Auto-refresh every 6 hours
-    setInterval(fetchData, 21600000); // 6 hours
+    // Auto-refresh every 12 hours
+    setInterval(fetchData, 43200000); // 12 hours
 });
 
 async function fetchData() {
@@ -38,8 +38,8 @@ async function fetchData() {
     try {
         console.log(`Fetching data from ${API_URL}...`);
 
-        // Add timestamp to prevent caching
-        const response = await fetch(`${API_URL}?t=${Date.now()}`, {
+        // Add timestamp to prevent caching and limit=264 for all locations
+        const response = await fetch(`${API_URL}?limit=264&t=${Date.now()}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,0 +1,396 @@
+/* History Page Specific Styles */
+
+/* Navigation Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-tab {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    padding: 0.6rem 1.2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-tab:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.05);
+}
+
+.nav-tab.active {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.1);
+}
+
+/* Hero Compact for History */
+.history-hero {
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.history-hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.history-hero p {
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+}
+
+/* Controls Card */
+.history-controls {
+    margin-bottom: 2rem;
+}
+
+.date-selector-row {
+    margin-top: 1rem;
+}
+
+.dates-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.date-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.date-chip:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.08);
+}
+
+.date-chip.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+    font-weight: 700;
+}
+
+/* History Data Card */
+.history-data-card {
+    margin-bottom: 2rem;
+}
+
+.history-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.history-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-input, .filter-select {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    transition: border-color 0.2s;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-select {
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Predictions Table */
+.predictions-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+}
+
+.predictions-table thead tr th {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.predictions-table tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.2s;
+}
+
+.predictions-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.predictions-table tbody tr td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.location-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Risk Badge in Table */
+.risk-badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.risk-badge.safe { color: var(--text-secondary); }
+.risk-badge.minor { color: var(--success-color); }
+.risk-badge.moderate { color: var(--warning-color); }
+.risk-badge.severe { color: var(--danger-color); text-shadow: 0 0 8px var(--danger-glow); }
+
+.tier-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+
+.tier-label.safe { border: 1px solid var(--text-secondary); color: var(--text-secondary); }
+.tier-label.minor { border: 1px solid var(--success-color); color: var(--success-color); }
+.tier-label.moderate { border: 1px solid var(--warning-color); color: var(--warning-color); }
+.tier-label.severe { border: 1px solid var(--danger-color); color: var(--danger-color); background: rgba(239, 68, 68, 0.1); }
+
+/* Ensemble Mini */
+.mini-ensemble {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-secondary);
+}
+
+.mini-ensemble span {
+    background: rgba(14, 165, 233, 0.08);
+    color: var(--accent-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    font-size: 0.65rem;
+}
+
+/* Weather Cell */
+.weather-cell {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Feedback Tags */
+.feedback-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+}
+
+.feedback-tag.flood-yes {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.feedback-tag.flood-no {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.feedback-btn {
+    background: transparent;
+    border: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.feedback-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.05);
+}
+
+/* Feedback Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 0 60px rgba(14, 165, 233, 0.2);
+}
+
+.modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.modal-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modal-btn {
+    padding: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.modal-btn.confirmed {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+.modal-btn.confirmed:hover {
+    background: var(--danger-color);
+    color: #fff;
+}
+
+.modal-btn.not-flooded {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+.modal-btn.not-flooded:hover {
+    background: var(--success-color);
+    color: #fff;
+}
+
+.modal-btn.cancel {
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+.modal-btn.cancel:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}
+
+/* Empty & Loading States */
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.loading-state {
+    color: var(--accent-color);
+}
+
+/* Row tints */
+.severe-row { border-left: 3px solid var(--danger-color); }
+.moderate-row { border-left: 3px solid var(--warning-color); }
+.minor-row { border-left: 3px solid var(--success-color); }
+.safe-row { border-left: 3px solid transparent; }
+
+.footer-note {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 2rem 0;
+}
