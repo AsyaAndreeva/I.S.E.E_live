@@ -163,7 +163,7 @@ function renderPredictions() {
                     <th>RISK SCORE</th>
                     <th>ENSEMBLE DETAILS</th>
                     <th>WEATHER</th>
-                    <th>ACTUAL OUTCOME</th>
+                    <th>48H OUTCOME</th>
                 </tr>
             </thead>
             <tbody>${rows}</tbody>

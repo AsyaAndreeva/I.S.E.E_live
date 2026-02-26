@@ -161,7 +161,7 @@ function updateDashboard(data) {
     // Show actual scan time, not page load time
     if (data.timestamp) {
         const scanDate = new Date(data.timestamp);
-        els.lastUpdated.textContent = `LAST SCAN: ${scanDate.toLocaleDateString()} ${scanDate.toLocaleTimeString()}`;
+        els.lastUpdated.innerHTML = `LAST SCAN: ${scanDate.toLocaleDateString()} ${scanDate.toLocaleTimeString()} <br><span style="color:#facc15; font-weight:bold; font-size: 0.9em;">FORECAST WINDOW: NEXT 48 HOURS</span>`;
         els.scanTime.textContent = scanDate.toLocaleTimeString();
     }
 
