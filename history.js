@@ -144,6 +144,7 @@ function renderPredictions() {
                         <span title="Sensitive Model">M: ${p.details?.min ?? '—'}%</span>
                         <span title="GNN Spatial">G: ${p.details?.gnn ?? '—'}%</span>
                     </div>
+                    ${p.explanation ? `<div style="font-size:0.8em; margin-top:6px; opacity:0.8; max-width:250px; white-space:normal; line-height:1.3; color:#a1a1aa;"><em><b>AI:</b> ${p.explanation}</em></div>` : ''}
                 </td>
                 <td class="weather-cell">
                     <span><i class="fas fa-droplet"></i> ${p.rain_mm?.toFixed(1) ?? '—'}mm</span>

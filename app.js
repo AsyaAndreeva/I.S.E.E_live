@@ -191,6 +191,9 @@ function updateDashboard(data) {
                         <span>RAIN_INDEX: ${w.rain_mm.toFixed(1)}MM</span>
                         <span>TEMP_ENV: ${w.temp_c.toFixed(1)}°C</span>
                     </div>
+                    <div class="ai-reasoning" style="margin-top: 6px; font-size: 0.85em; opacity: 0.8; color: #cbd5e1; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 6px;">
+                        <em>AI Analysis: ${w.explanation}</em>
+                    </div>
                 </div>
                 <div class="risk-score-badge ${tierClass}">
                     ${w.risk.toFixed(1)}%
