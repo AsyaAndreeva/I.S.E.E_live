@@ -62,10 +62,10 @@ async function loadCachedData() {
             updateDashboard(data);
             setConnected(true);
 
-            // Set next scan countdown
             if (data.next_scan) {
                 nextScanTime = new Date(data.next_scan);
             } else if (data.timestamp) {
+                // Fallback to 12 hours if next_scan not provided
                 nextScanTime = new Date(new Date(data.timestamp).getTime() + SCAN_INTERVAL_MS);
             }
         } else {
@@ -133,14 +133,28 @@ function updateCountdown() {
 
     if (diff <= 0) {
         els.nextScanEl.textContent = 'SCANNING NOW...';
+        // Auto-trigger scan if not already loading
+        if (!isLoading) {
+            console.log("⏰ Countdown expired. Forcing automatic rescan...");
+            fetchData();
+        }
         return;
     }
 
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
-    els.nextScanEl.textContent =
-        `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+    // Dynamic countdown label
+    const totalMinutes = Math.floor(diff / 60000);
+    if (totalMinutes < 60) {
+        els.nextScanEl.textContent = `${totalMinutes} min until next scan`;
+        els.nextScanEl.style.color = '#facc15'; // Yellow when close
+    } else {
+        els.nextScanEl.textContent =
+            `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        els.nextScanEl.style.color = 'var(--accent-color)';
+    }
 }
 
 function updateDashboard(data) {
@@ -161,7 +175,8 @@ function updateDashboard(data) {
     // Show actual scan time, not page load time
     if (data.timestamp) {
         const scanDate = new Date(data.timestamp);
-        els.lastUpdated.innerHTML = `LAST SCAN: ${scanDate.toLocaleDateString()} ${scanDate.toLocaleTimeString()} <br><span style="color:#facc15; font-weight:bold; font-size: 0.9em;">FORECAST WINDOW: NEXT 48 HOURS</span>`;
+        const apiUpdateText = data.api_last_update ? `<br><small style="opacity:0.7">API LAST UPDATED: ${data.api_last_update.replace('T', ' ')}</small>` : '';
+        els.lastUpdated.innerHTML = `LAST SCAN: ${scanDate.toLocaleDateString()} ${scanDate.toLocaleTimeString()} ${apiUpdateText} <br><span style="color:#facc15; font-weight:bold; font-size: 0.9em;">FORECAST WINDOW: NEXT 48 HOURS</span>`;
         els.scanTime.textContent = scanDate.toLocaleTimeString();
     }
 
