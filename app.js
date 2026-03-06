@@ -140,19 +140,27 @@ function updateCountdown() {
         }
         return;
     }
-
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
 
     // Dynamic countdown label
-    const totalMinutes = Math.floor(diff / 60000);
+    const totalMinutes = Math.round(diff / 60000);
+
+    if (totalMinutes <= 0) {
+        els.nextScanEl.textContent = 'SCANNING NOW...';
+        if (!isLoading) {
+            console.log("⏰ Countdown expired. Forcing automatic rescan...");
+            fetchData();
+        }
+        return;
+    }
+
     if (totalMinutes < 60) {
-        els.nextScanEl.textContent = `${totalMinutes} min until next scan`;
+        els.nextScanEl.textContent = `${totalMinutes}min until next scan`;
         els.nextScanEl.style.color = '#facc15'; // Yellow when close
     } else {
-        els.nextScanEl.textContent =
-            `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        els.nextScanEl.textContent = `${totalMinutes}min until next scan`;
         els.nextScanEl.style.color = 'var(--accent-color)';
     }
 }
@@ -196,22 +204,22 @@ function updateDashboard(data) {
 
             div.innerHTML = `
                 <div class="warning-info">
-                    <strong>${w.location.toUpperCase()} <span class="badge ${tierClass}">${tierLabel}</span></strong>
+                    <strong>${(w.location || 'Unknown').toUpperCase()} <span class="badge ${tierClass}">${tierLabel}</span></strong>
                     <div class="ensemble-breakdown">
-                        <div>STD_MODULE: <span>${w.details.std}%</span></div>
-                        <div>MIN_SENSITIVE: <span>${w.details.min}%</span></div>
-                        <div>GNN_SPATIAL: <span>${w.details.gnn}%</span></div>
+                        <div>STD_MODULE: <span>${w.details?.std !== undefined ? w.details.std + '%' : 'N/A'}</span></div>
+                        <div>MIN_SENSITIVE: <span>${w.details?.min !== undefined ? w.details.min + '%' : 'N/A'}</span></div>
+                        <div>GNN_SPATIAL: <span>${w.details?.gnn !== undefined ? w.details.gnn + '%' : 'N/A'}</span></div>
                     </div>
                     <div class="weather-meta">
-                        <span>RAIN_INDEX: ${w.rain_mm.toFixed(1)}MM</span>
-                        <span>TEMP_ENV: ${w.temp_c.toFixed(1)}°C</span>
+                        <span>RAIN_INDEX: ${w.rain_mm !== undefined ? w.rain_mm.toFixed(1) + 'MM' : 'N/A'}</span>
+                        <span>TEMP_ENV: ${w.temp_c !== undefined ? w.temp_c.toFixed(1) + '°C' : 'N/A'}</span>
                     </div>
                     <div class="ai-reasoning" style="margin-top: 6px; font-size: 0.85em; opacity: 0.8; color: #cbd5e1; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 6px;">
-                        <em>AI Analysis: ${w.explanation}</em>
+                        <em>AI Analysis: ${w.explanation || 'No details provided'}</em>
                     </div>
                 </div>
                 <div class="risk-score-badge ${tierClass}">
-                    ${w.risk.toFixed(1)}%
+                    ${w.risk !== undefined ? w.risk.toFixed(1) + '%' : 'N/A'}
                 </div>
             `;
             els.warningsList.appendChild(div);
