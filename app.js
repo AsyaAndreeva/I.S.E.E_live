@@ -99,8 +99,13 @@ async function fetchData() {
         if (data.status === 'success' || data.warnings) {
             updateDashboard(data);
             setConnected(true);
-            // After a live scan, next scan is 12 hours from now
-            nextScanTime = new Date(Date.now() + SCAN_INTERVAL_MS);
+            
+            // Use provided next_scan or default interval
+            if (data.next_scan) {
+                nextScanTime = new Date(data.next_scan);
+            } else {
+                nextScanTime = new Date(Date.now() + SCAN_INTERVAL_MS);
+            }
         } else {
             throw new Error('Invalid data format received');
         }
@@ -144,23 +149,15 @@ function updateCountdown() {
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
 
-    // Dynamic countdown label
-    const totalMinutes = Math.round(diff / 60000);
+    const pad = (num) => num.toString().padStart(2, '0');
+    const timeString = `${pad(h)}:${pad(m)}:${pad(s)}`;
 
-    if (totalMinutes <= 0) {
-        els.nextScanEl.textContent = 'SCANNING NOW...';
-        if (!isLoading) {
-            console.log("⏰ Countdown expired. Forcing automatic rescan...");
-            fetchData();
-        }
-        return;
-    }
-
-    if (totalMinutes < 60) {
-        els.nextScanEl.textContent = `${totalMinutes}min until next scan`;
-        els.nextScanEl.style.color = '#facc15'; // Yellow when close
+    els.nextScanEl.textContent = `Next scan in ${timeString}`;
+    
+    // Change color to yellow if less than an hour remains
+    if (h === 0) {
+        els.nextScanEl.style.color = '#facc15'; 
     } else {
-        els.nextScanEl.textContent = `${totalMinutes}min until next scan`;
         els.nextScanEl.style.color = 'var(--accent-color)';
     }
 }
