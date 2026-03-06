@@ -5,7 +5,7 @@ const _0x4f2 = "aHR0cHM6Ly91cy1jZW50cmFsMS1pc2VlLTQ4NDIxNS5jbG91ZGZ1bmN0aW9ucy5u
 const API_URL = atob(_0x4f2); // flood-live (for manual force-refresh only)
 const LATEST_URL = 'https://us-central1-isee-484215.cloudfunctions.net/flood-latest'; // instant cached read
 
-const SCAN_INTERVAL_MS = 12 * 60 * 60 * 1000; // 12 hours
+const SCAN_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes (aligned to Open-Meteo update cycle)
 
 // DOM Elements
 const els = {
@@ -226,7 +226,9 @@ function updateDashboard(data) {
         });
     }
 
-    els.locCount.textContent = data.scan_stats ? data.scan_stats.total : '264';
+    els.locCount.textContent = data.scan_stats
+        ? (data.scan_stats.data_available ?? data.scan_stats.total)
+        : '264';
     els.dataSource.textContent = 'ISEE_ENSEMBLE_V3';
 
     const fakePercent = 0.3;
